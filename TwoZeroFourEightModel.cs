@@ -17,7 +17,7 @@ namespace twozerofoureight
         {
             // default board size is 4 
         }
-
+        
         public TwoZeroFourEightModel(int size)
         {
             boardSize = size;
@@ -35,9 +35,34 @@ namespace twozerofoureight
             HandleChanges();
         }
 
+        public int GetScore()
+        {
+            int sum = 0;
+            for (int i = 0; i < boardSize; i++) {
+                for (int j = 0; j < boardSize; j++) {
+                    sum = sum + board[i, j]; // sum += board[i,j];
+                }
+            }
+            return sum;
+        }
+
         public int[,] GetBoard()
         {
             return board;
+        }
+
+        public bool CheckGameOver()
+        {
+            bool gg = false;
+            for (int i = 0; i < boardSize; i++)
+            {
+                for (int j = 0; j < boardSize; j++)
+                {
+                    if (board[i, j] == 2048)
+                        gg = true;                        
+                }
+            }
+            return gg;
         }
 
         private void AddRandomSlot()
